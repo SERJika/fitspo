@@ -1,0 +1,85 @@
+//Страничка FAQ
+.page-faq,
+.page-sport-food
+	@extend .single-page-rules
+.page-info-faq,
+.page-info-sport-food
+	@extend .page-info-rules
+
+//Аккордион
+.accordion-wrapper
+	margin-bottom: 56px
+	.accordion-collapse
+		display: none
+		overflow: hidden
+		& *
+			padding: 6px 0 18px
+			margin: 0
+		ul,
+		ol
+			padding-left: 15px
+			li
+				padding-bottom: 0
+		a
+			color: $main_bg
+	.accordion
+		border-bottom: 1px solid #cccccc
+		&.expanded
+			.accordion-header
+				&:before
+					opacity: 0
+					transform: rotate(180deg)
+				&:after
+					opacity: 1
+		.accordion-header
+			position: relative
+			padding-right: 30px
+			&:before,
+			&:after
+				position: absolute
+				top: 15px
+				right: 5px
+				opacity: .4
+				font-family: 'Material Icons'
+				transition: all .3s linear 0s
+			&:before
+				content: '\E145'
+			&:after
+				content: '\E15B'
+				opacity: 0
+				transform: rotate(-180deg)
+		.accordion-header *
+			font-family: "LatoLight", Arial, sans-serif
+			font-size: 16px
+			line-height: 24px
+			text-transform: none
+			cursor: pointer
+			margin: 0
+			padding: 13px 0
+	.accordion-column
+		float: left
+		width: 100%
+		.accordion-column-title
+			color: $sub_text_color
+			font-size: 13px
+			line-height: 14px
+			font-family: "LatoRegular", Arial, sans-serif
+			padding-bottom: 0
+		.accordion-column-body,
+		.accordion-column-body p:last-child
+			padding-bottom: 0
+
+@media (min-width:992px)
+	.accordion-wrapper
+		.accordion-column-4
+			width: 33.33%
+			padding-right: 15px
+			padding-left: 15px
+			&:first-of-type
+				padding-left: 0
+
+
+
+
+
+

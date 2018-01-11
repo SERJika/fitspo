@@ -1,0 +1,629 @@
+//Боковое меню
+body, html
+	height: 100%
+body
+	padding-top: 66px
+.site-navbar
+	background-color: #fff
+	.navbar-header
+		color: #fff
+		background-color: $main_bg
+		.navbar-toggle
+			color: #fff
+		.hamburger .hamburger-bar,
+		.hamburger:after,
+		.hamburger:before
+			background-color: #fff
+		.navbar-brand
+			float: none
+			overflow: hidden
+			font-family: "LatoRegular", Arial, sans-serif
+			color: #fff
+			text-align: center
+			text-overflow: ellipsis
+			white-space: nowrap
+			cursor: pointer
+		.navbar-brand-logo
+			height: 22px
+			transition: height .25s
+		.navbar-brand-text
+			display: none
+	.navbar-container
+		background-color: #fff
+		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.13), 0 2px 4px 0 rgba(0,0,0,0.10)
+		height: 66px
+
+.site-menubar
+	position: fixed
+	top: 66px
+	z-index: 1400
+	width: 336px
+	height: 100%
+	height: calc(100% - 66px)
+	font-family: "LatoRegular", Arial, sans-serif
+	color: $menu_side_link
+	transition: width .25s, opacity .25s, transform .25s
+	ul
+		padding: 0
+		margin: 0
+		list-style: none
+	a
+		outline: 0
+		&:focus,
+		&:hover
+			text-decoration: none
+	.scrollable-inverse.scrollable .scrollable-bar-handle
+		background: $menu_side_bg
+
+	&.site-menubar-dark
+		background: $menu_side_bg
+		box-shadow: 0 2px 8px rgba(0, 0, 0, .15), 0 5px 6px rgba(0, 0, 0, .20)
+.site-menu
+	padding-bottom: 20px
+	overflow: visible
+	font-size: 16px
+	transition: transform .25s
+.site-menu-item
+	line-height: 36px
+	padding: 11px 0 3px
+	transition: transform .1s, all .25s, border 0
+	&>a
+		white-space: nowrap
+		cursor: pointer
+.site-menu-icon
+	display: inline-block
+	width: 1em
+	margin-right: 16px
+	text-align: center
+.site-menu-title
+	font-size: 16px
+	display: inline-block
+	max-width: 200px
+	overflow: hidden
+	text-overflow: ellipsis
+	white-space: nowrap
+	vertical-align: inherit
+	line-height: 20px
+	transition: visibility .25s, opacity .25s
+	&:first-child
+		margin-left: 25px
+.mm-navbar .mm-prev,
+.site-menu-arrow,
+[class*=" md-"],
+[class^=md-]
+	position: relative
+	display: inline-block
+	font-family: 'Material Icons'
+	font-style: normal
+	font-weight: 400
+	transform: translate(0, 0)
+	text-rendering: auto
+	speak: none
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	text-rendering: optimizeLegibility
+	font-feature-settings: "liga"
+	text-transform: none
+	font-size: 20px
+.site-menu-arrow
+	&:before
+		content: '\e315'
+
+[class*=" md-"],
+[class^=md-]
+	transform: translate(0,0)
+	font-size: 22px
+
+.md-view-group:before
+	content: '\E5C3'
+.md-view-user:before
+	content: '\E7FD'
+.md-view-setting:before
+	content: '\E8B8'
+.md-notifications:before
+	content: '\E7F4'
+.md-home:before
+	content: '\E88A'
+.md-power:before
+	content: '\E154'
+.md-view-calendar:before
+	content: '\E916'
+.md-view-food:before
+	content: '\EB49'
+.md-view-dashboard:before
+	content: '\E871'
+.md-view-report:before
+	content: '\E873'
+.md-view-rules:before
+	content: '\E88E'
+
+.md-notifications
+	color: #454545
+
+.mm-navbar .mm-prev
+	position: absolute
+	left: 20px
+	line-height: 66px
+	color: $menu_side_link_light
+	&:before
+		content: '\e314'
+.site-menu-arrow,
+.site-menu-badge,
+.site-menu-label
+	position: absolute
+	right: 25px
+	display: inline-block
+	vertical-align: middle
+	transition: visibility cubic-bezier(.76, .1, 1, -.16) .25s, opacity cubic-bezier(.76, .1, 1, -.16) .5s
+.site-menu .badge,
+.site-menu .label
+	padding: 2px 5px 3px
+	font-size: 12px
+	font-weight: 300
+
+.site-menu-item
+	position: relative
+	white-space: nowrap
+	a
+		display: block
+		color: $menu_side_link
+	&:hover>a
+		color: $menu_side_link_light
+	&.active
+		background: $menu_side_bg_item
+		&>a
+			color: $menu_side_link_light
+
+.site-menu
+	&>.site-menu-item
+		padding: 0
+		font-size: 16px
+		height: 50px
+		&>a
+			padding: 0 20px
+			line-height: 50px
+		&.active
+			border-top: 1px solid $menu_side_bg_item
+			border-bottom: 1px solid $menu_side_bg_item
+
+.site-menu-item>.site-menu-sub
+	background-color: $menu_side_bg
+
+.site-menubar-dark
+	.site-menu-item
+		a
+			color: $menu_side_link
+		&:hover,
+		&.active
+			background-color: $menu_side_bg_item
+			&>a
+				color: $menu_side_link_light
+		&>.site-menu-sub
+			background-color: $menu_side_bg
+
+.site-menubar-fold
+	.page
+		margin-left: 65px
+	.site-menu
+		&>.site-menu-item
+			font-size: 16px
+			&>a
+				height: 50px
+				.site-menu-arrow,
+				.site-menu-badge,
+				.site-menu-title
+					visibility: hidden
+					opacity: 0
+	.site-menubar
+		width: 65px
+	&.site-menubar-hover
+		.site-navbar
+			.navbar-brand
+				float: left
+				text-align: left
+			.navbar-brand-logo
+				height: 18px
+			.navbar-brand-text
+				display: inline-block
+		.navbar-brand-logo-black
+			margin-left: -336px
+			transition: margin-left 0.3s
+		.site-menubar
+			width: 336px
+		.site-menu>.site-menu-item>a .site-menu-arrow,
+		.site-menu>.site-menu-item>a .site-menu-badge,
+		.site-menu>.site-menu-item>a .site-menu-title
+			visibility: visible
+			opacity: 1
+	&:not(.site-menubar-hover) .mm-panels>.mm-panel
+		transform: translate3d(100%, 0, 0)
+	&:not(.site-menubar-hover) .mm-panels>.mm-panel.mm-current:first-child,
+	&:not(.site-menubar-hover) .mm-panels>.mm-panel.mm-subopened:first-child
+		display: block!important
+		transform: translate3d(0, 0, 0)
+	&.site-menubar-changing .site-menu>.site-menu-item>.site-menu-sub
+		display: none
+
+.site-menubar-unfold
+	.navbar-brand-logo-black
+		margin-left: -336px
+		transition: margin-left .25s
+		opacity: 0
+	.page
+		margin-left: 336px
+		transition: margin-left .25s
+		opacity: 1
+	.site-navbar
+		.navbar-brand
+			float: left
+			text-align: left
+		.navbar-brand-logo
+			height: 18px
+		.navbar-brand-text
+			display: inline-block
+	&.site-menubar-native
+		.site-menubar-body
+			overflow-y: scroll
+	.site-menubar
+		width: 336px
+
+.site-menubar-unfold [data-toggle=menubar]
+	.hamburger-arrow-left
+		transform: rotate(180deg)
+		&:before
+			width: .6em
+			transform: translate3d(-0.1em, 0.15em, 0) rotate(-45deg)
+		&:after
+			width: .6em
+			transform: translate3d(-0.1em, -0.1em, 0) rotate(45deg)
+		.hamburger-bar
+			border-radius: .2em
+
+.site-navbar-small
+	padding-top: 60px
+	.site-navbar
+		height: 66px
+		min-height: 66px
+		.navbar-brand
+			height: 66px
+			padding: 24px 20px 19px
+		.navbar-nav
+			margin: 9.5px -15px
+		.navbar-toggle
+			height: 66px
+			padding: 19px 15px
+			margin: 0
+			width: 65px
+		.navbar-toolbar>li>a
+			padding-top: 17px
+			padding-bottom: 19px
+			color: inherit
+		.navbar-food-item
+			margin-right: 20px
+		.navbar-nav>li>a.navbar-user,
+		.navbar-toolbar>li>a.navbar-user,
+			padding-top: 19px
+			padding-bottom: 19px
+		.navbar-toolbar>li>a.navbar-calendar,
+		.navbar-toolbar>li>a.navbar-food
+			padding: 21px 10px 19px
+		.navbar-toolbar-right>li
+			display: inline-block
+			vertical-align: top
+
+
+	.site-menubar,
+	.slidePanel-left,
+	.slidePanel-right
+		top: 66px
+
+.mm-navbar .mm-title
+	padding: 10px 35px
+	font-size: 18px
+	color: $menu_side_link_light
+
+.hamburger
+	font-size: 29px
+	vertical-align: middle
+
+.hamburger,
+.hamburger .hamburger-bar,
+.hamburger:after,
+.hamburger:before
+	transition: transform .2s ease-in-out
+
+.hamburger:after,
+.hamburger:before
+	content: ""
+
+.hamburger .hamburger-bar,
+.hamburger:after,
+.hamburger:before
+	display: block
+	width: 1em
+	height: .1em
+	margin: 0
+	border-radius: 1px
+
+.hamburger .hamburger-bar
+	margin: .2em 0
+
+.hamburger-close:before
+	transform: rotate(45deg)
+	transform-origin: 8%
+
+.hamburger-close .hamburger-bar
+	opacity: 0
+
+.hamburger-close:after
+	transform: rotate(-45deg)
+	transform-origin: 8%
+
+.hamburger-close.collapsed:before,
+.hamburger-close.hided:before
+	transform: rotate(0)
+
+.hamburger-close.collapsed .hamburger-bar,
+.hamburger-close.hided .hamburger-bar
+	opacity: 1
+
+.hamburger-close.collapsed:after,
+.hamburger-close.hided:after
+	transform: rotate(0)
+
+.hamburger-arrow-left.collapsed
+	transform: rotate(180deg)
+
+.hamburger-arrow-left.collapsed:before
+	width: .6em
+	transform: translate3d(.45em, .1em, 0) rotate(45deg)
+
+.hamburger-arrow-left.collapsed .hamburger-bar
+	border-radius: .2em
+
+.hamburger-arrow-left.collapsed:after
+	width: .6em
+	transform: translate3d(.45em, -.1em, 0) rotate(-45deg)
+
+.navbar-toolbar .dropdown-menu
+	transform-origin: 100% 0
+	animation-duration: .3s
+
+.navbar-toolbar-right
+	margin-top: 0
+	li
+		height: 100%
+		a,
+		&.open>a
+			&:hover,
+			&:active,
+			&:focus
+				background-color: transparent
+		.badge
+			position: relative
+			top: -12px
+			right: 14px
+	.dropdown-menu-notifications,
+	.dropdown-menu-user
+		padding: 0
+		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1), 0 2px 4px 0 rgba(0,0,0,0.1)
+		border-radius: 2px
+	.dropdown-menu-user
+		margin-top: 10px
+		li
+			a
+				font-size: 16px
+				line-height: 28px
+				color: #383838
+				padding: 8px 46px 9px
+				transition: all .2s ease
+				&:hover,
+				&:active,
+				&:focus
+					background-color: #eee
+			i
+				vertical-align: middle
+	.navbar-user
+		font-size: 16px
+		color: #383838
+		font-family: "LatoLight", Arial, sans-serif
+		padding-right: 50px
+		position: relative
+		i
+			vertical-align: middle
+		&:after
+			content: ''
+			background: url(../img/sprite.png) 0 -3px no-repeat
+			width: 16px
+			height: 8px
+			position: absolute
+			top: 0
+			bottom: 0
+			margin: auto
+			right: 14px
+	.open .navbar-user:after
+		transform: rotate(180deg)
+	.hello-user
+		padding-left: 12px
+
+
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus
+	background-color: transparent
+
+@media (max-width:767px)
+	.site-menubar-unfold
+		.page
+			margin-left: auto
+	.site-menubar-open
+		.page
+			transform: translate3d(336px, 0, 0)
+		.site-menubar
+			transition: transform .25s, top .35s, height .35s
+			transform: translate3d(0, 0, 0)
+	.site-menubar-changing
+		overflow: hidden
+		.page
+			transition: transform .25s
+	.site-menubar-hide
+		.site-menubar
+			transition: transform .25s, top .35s, height .35s
+	.site-navbar-collapsing
+		transition: padding-top .35s
+	.site-navbar-collapse-show
+		padding-top: 132px
+		.slidePanel.slidePanel-left,
+		.slidePanel.slidePanel-right
+			top: 135px
+			transition: top .35s
+	body.site-navbar-small
+		padding-top: 60px
+		.site-menubar
+			top: 66px
+			height: calc(100% - 66px)
+		.slidePanel-left,
+		.slidePanel-right
+			top: 66px
+		&.site-navbar-collapse-show
+			padding-top: 120px
+			.site-menubar
+				top: 120px
+				height: calc(100% - 120px)
+			.slidePanel.slidePanel-left,
+			.slidePanel.slidePanel-right
+				top: 120px
+	.site-navbar
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13), 0 2px 4px 0 rgba(0, 0, 0, 0.1)
+		.brand,
+		.navbar-brand
+			display: none
+		.brand-mobile
+			display: block
+		.navbar-header
+			width: 65px
+		.navbar-container
+			float: right
+			width: 80%
+			position: relative
+			top: -66px
+			right: 0
+			box-shadow: none
+			&>.navbar-collapse
+				display: block
+		.navbar-toolbar-right
+			text-align: right
+			li.dropdown
+				width: 20%
+				a
+					padding-left: 0
+					padding-right: 0
+			.hello-user,
+			.navbar-user i
+				display: none
+			.navbar-user:after
+				top: 30px
+				right: 0
+			.dropdown-menu
+				left: -100px
+			.dropdown-menu-user
+				margin-top: 33px
+				left: -194px
+				li>a
+					padding-left: 10px
+					padding-right: 10px
+
+	.site-menubar
+		top: 66px
+		height: calc(100% - 66px)
+		transform: translate3d(-336px, 0, 0)
+		backface-visibility: hidden
+		perspective: 1000
+	.site-navbar-collapse-show .site-menubar
+		top: 132px
+		height: calc(100% - 132px)
+	.disable-scrolling,
+	body.site-menubar-open
+		height: 100%
+		overflow: hidden
+	body.site-menubar-open .page
+		height: 100%
+		overflow: hidden
+		pointer-events: none
+	.site-menubar-unfold [data-toggle=menubar] .hided.hamburger-arrow-left:before,
+	.site-menubar-unfold [data-toggle=menubar] .hided.hamburger-arrow-left:after
+		width: 1em
+		transform: none
+
+@media (max-width:991px)
+	.site-menubar
+		&.site-menubar-dark
+			box-shadow: none
+	.site-menubar-fold
+		.site-menubar
+			width: 0
+		.page
+			margin-left: 0
+		.site-navbar
+			.navbar-header
+				.navbar-brand
+					display: none
+	.site-navbar
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13), 0 2px 4px 0 rgba(0, 0, 0, 0.1)
+		.navbar-container
+			box-shadow: none
+
+@media (min-width:768px)
+	.site-navbar
+		.navbar-header
+			width: 65px
+			height: 66px
+		.navbar-container
+			margin-left: 65px
+			transition: margin-left .25s
+	.site-menubar-fold.site-menubar-hover
+		.site-navbar
+			.navbar-header
+				width: 336px
+			.navbar-container
+				margin-left: 336px
+	.site-menubar-unfold
+		.site-navbar
+			.navbar-header
+				width: 336px
+				transition: width .25s
+			.navbar-container
+				margin-left: 336px
+	.site-navbar-small
+		.site-navbar
+			.navbar-nav>li>a
+				padding-top: 19px
+				padding-bottom: 19px
+	.css-menubar
+		.site-menu
+			&>.site-menu-item
+				font-size: 14px
+				&>a
+					height: 50px
+					.site-menu-arrow,
+					.site-menu-badge,
+					.site-menu-title
+						visibility: hidden
+						opacity: 0
+			.site-menu-item:hover>.site-menu-sub
+				position: absolute
+				top: 0
+				left: 100%
+				display: block
+				width: 240px
+			.site-menu-sub
+				display: none
+		.site-menubar
+			width: 65px
+	.navbar-toggle
+		display: block
+
+@media screen and (min-width:1200px)
+	.css-menubar .page
+		margin-left: 336px
+		transition: margin-left .25s

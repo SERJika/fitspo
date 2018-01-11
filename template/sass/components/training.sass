@@ -1,0 +1,300 @@
+//Страничка Тренировки
+.page-training
+	@extend .page-group
+	overflow-y: visible
+.page-info-training
+	@extend .page-info-group
+	background: url(../img/bg_training.jpg) 0 0 no-repeat
+	background-size: cover
+	position: fixed
+	width: 100%
+.page-training-content,
+.single-training-content
+	@extend .page-group-content
+	top: 158px
+	margin-bottom: 60px
+	.btn-fixed
+		position: fixed
+		right: 198px
+		top: 259px
+.single-training-content
+	background-color: #fff
+	border-radius: 2px
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.13)
+	padding: 20px 25px
+.training-item
+	padding-top: 35px
+	padding-bottom: 25px
+	.slick-arrow
+		position: absolute
+		bottom: 0
+	.slick-prev
+		right: 110px
+	.slick-next
+		right: 10px
+.training-slide
+	outline: none
+	.slide-media
+		width: 100%
+		height: 438px
+		overflow: hidden
+		padding: 0 12px
+		img,
+		iframe
+			width: 100%
+			height: 100%
+			object-fit: cover
+	.slide-desc
+		margin-top: 4px
+		h3, h2, h4, h5, h6
+			font-size: 20px
+			font-weight: normal
+			margin-bottom: 0
+			font-family: "LatoLight", Arial, sans-serif
+		p
+			font-size: 16px
+			line-height: 24px
+			margin-top: 6px
+
+.pagingInfo
+	position: absolute
+	font-size: 16px
+	bottom: 25px
+	right: 243px
+
+.filter
+	padding: 23px 30px 14px
+	background-color: #FFF
+	border-radius: 2px 2px 0 0
+	.filter-row
+		border-bottom: 1px solid #bdbdbd
+		margin: 0
+		padding-bottom: 18px
+	h3
+		font-size: 20px
+		color: $text_color
+		font-weight: normal
+		text-transform: uppercase
+		font-family: "LatoLight", Arial, sans-serif
+		margin: 0
+	span
+		display: inline-block
+		vertical-align: middle
+		font-size: 13px
+		color: #949494
+		padding-right: 20px
+	.custom-select
+		display: inline-block
+		vertical-align: middle
+		padding-top: 5px
+		min-width: 125px
+		.custom-select-trigger
+			padding: 0
+			width: 100%
+			position: relative
+			color: $text_color
+	.custom-select-wrapper
+		display: inline-block
+		vertical-align: middle
+.plan-training-content
+	.filter .custom-select
+		min-width: 125px
+
+.form-praxis
+	background-color: #fff
+	padding: 70px 48px
+	border-radius: 2px
+	box-shadow: 0 0 2px 4px rgba(0,0,0,0.08), 0 0 1px 2px rgba(0,0,0,0.13)
+	.group-comment
+		margin-bottom: 44px
+	.rkmd-radio
+		font-size: 16px
+		color: $text_color
+		font-family: "LatoLight", Arial, sans-serif
+		font-weight: normal
+		letter-spacing: 0
+		.input-radio
+			vertical-align: middle
+	.toggle-block
+		margin-top: 37px
+		span
+			font-size: 16px
+			padding-right: 30px
+		.switch
+			float: right
+			margin-top: 4px
+			& + p
+				color: $sub_text_color
+				font-size: 14px
+				margin-top: 0
+	.buttons
+		margin-bottom: 30px
+	.add-praxis
+		background-color: #f4f4f4
+		padding: 15px 20px
+		margin-top: 10px
+		margin-bottom: 15px
+		min-height: 129px
+		.praxis-info
+			width: 84%
+			display: inline-block
+			vertical-align: middle
+		span
+			font-size: 16px
+			font-family: "LatoLight", Arial, sans-serif
+			color: $sub_text_color
+			i
+				vertical-align: middle
+				font-size: inherit
+		&.active
+			cursor: pointer
+			&:hover,
+			&:active
+				background-color: #eee
+		& + .add-praxis
+			margin-top: 0
+		.praxis-name
+			margin-top: 7px
+			width: 100%
+			display: inline-block
+			vertical-align: middle
+			h4
+				margin: 0
+				font-size: 16px
+				color: $text_color
+				font-weight: normal
+			p
+				font-size: 14px
+				color: $sub_text_color
+				margin: 0
+				line-height: 18px
+		.praxis-icon
+			margin-top: 7px
+			width: 14%
+			display: inline-block
+			vertical-align: middle
+			text-align: right
+			border: none
+			background-color: transparent
+			outline: none
+			cursor: default
+			i
+				font-size: 24px
+				color: #bdbdbd
+				span
+					color: #d7d7d7
+					font-size: 12px
+					bottom: -25px
+					padding: 3px 0 0
+				&.active
+					color: #454545
+					cursor: pointer
+	.new-block-praxis
+		.custom-select.active .custom-select-trigger
+			color: #383838
+			font-family: "LatoRegular", sans-serif
+
+
+@media (max-width:479px)
+	.form-praxis
+		.buttons
+			margin-bottom: 0
+			.right-position
+				float: none
+			button
+				margin-bottom: 20px
+
+@media (max-width:767px)
+	.page-training
+		padding-bottom: 40px
+	.page-info-training
+		background-position-x: 86%
+		position: relative
+		width: auto
+	.page-training-content,
+	.single-training-content
+		top: 0
+		.btn-fixed
+			right: 10px
+			top: 88%
+	.filter
+		padding: 30px 0
+		h3
+			display: none
+		span
+			width: 54%
+		.custom-select
+			width: 40%
+	.single-training-content
+		box-shadow: none
+		padding: 20px 0
+		.training-item
+			padding-left: 0
+			padding-right: 0
+	.form-praxis
+		padding: 45px 0
+		box-shadow: none
+		.buttons
+			margin-top: 40px
+		.add-praxis
+			padding: 15px 15px
+			.praxis-info
+				width: 84%
+
+@media (max-width: 792px) and (min-width: 768px)
+	.form-praxis
+		.buttons
+			.right-position
+				float: none
+			button
+				margin-bottom: 20px
+
+@media (max-width: 991px) and (min-width: 768px)
+	.page-training-content
+		top: 193px
+		.btn-fixed
+			right: 23px
+			top: 89%
+	.single-page-user-setting
+		.page-training-content
+			top: 0
+		.form-praxis
+			box-shadow: none
+
+@media (max-width: 991px) and (min-width: 782px)
+	.filter .custom-select
+		min-width: 78px
+
+@media (max-width: 1080px) and (min-width: 992px)
+	.filter .custom-select
+		min-width: 82px
+
+@media (max-width: 1120px) and (min-width: 1081px)
+	.filter .custom-select
+		min-width: 110px
+
+@media (max-width: 1190px) and (min-width: 992px)
+	.page-training-content .btn-fixed
+		right: 10px
+
+@media (max-width: 1250px) and (min-width: 1191px)
+	.page-training-content .btn-fixed
+		right: 4%
+
+@media (max-width: 1430px) and (min-width: 1251px)
+	.page-training-content .btn-fixed
+		right: 6%
+
+@media (max-width: 1530px) and (min-width: 1431px)
+	.page-training-content .btn-fixed
+		right: 11%
+
+@media (max-width: 1730px) and (min-width: 1531px)
+	.page-training-content .btn-fixed
+		right: 15%
+
+@media (min-width: 1731px)
+	.page-training-content .btn-fixed
+		right: 20%
+
+

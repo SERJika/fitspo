@@ -1,0 +1,109 @@
+//Страничка админ. Правила курса
+.page-rules
+	@extend .page-group
+.page-info-rules
+	@extend .page-info-group
+	background: url(../img/bg_rules.jpg) 0 0 no-repeat
+	background-size: cover
+
+// ЛК участника. Текстовые страницы
+.lk-user-rules
+	.page-text-content
+		padding-top: 5px
+
+
+//Страничка админ. Страничка одного Правила курса
+.page-text-content
+	background-color: #fff
+	border-radius: 2px
+	min-height: 1px
+	position: relative
+	left: 0
+	right: 0
+	margin: auto
+	max-width: 876px
+	overflow: hidden
+	margin-bottom: 67px
+	h1
+		font-size: 24px
+	h2
+		font-size: 20px
+	h3
+		font-size: 18px
+	h4,
+	h5,
+	h6,
+	p,
+	a:not(.btn-flat),
+	ol,
+	ul,
+	dl
+		font-size: 16px
+
+	p,
+	b,
+	strong,
+	a,
+	ol,
+	ul,
+	dl
+		line-height: 24px
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+		font-family: "LatoLight", Arial, sans-serif
+		text-transform: uppercase
+		margin-bottom: 10px
+		margin-top: 40px
+		font-weight: 100
+	ul,
+	ol
+		padding-left: 15px
+	p
+		margin-bottom: 20px
+	strong,
+	b,
+	dt
+		font-size: 18px
+		font-weight: normal
+		font-family: "LatoBold", Arial, sans-serif
+	dt
+		margin-bottom: 10px
+	dd
+		margin-bottom: 18px
+		margin-left: 0
+
+.message-block
+	background-color: #f4f4f4
+	border-left: 5px solid #4eb79e
+	padding: 5px 40px
+	margin: 30px 0
+
+@media (max-width:767px)
+	.single-page-rules
+		.page-info-rules
+			position: relative
+			background-size: cover
+		.page-text-content
+			top: 0
+			width: 100%
+			padding-top: 40px
+
+@media (min-width:768px)
+	.single-page-rules
+		.page-info-rules
+			position: fixed
+			width: 100%
+	.page-text-content
+		top: 210px
+		width: 85%
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,.08), 0 1px 2px 0 rgba(0,0,0,.13)
+		padding: 20px 50px
+
+@media (min-width:992px)
+	.page-text-content
+		top: 158px

@@ -1,0 +1,313 @@
+.close-icon
+	font-size: 2.4rem
+	display: inline-block
+	cursor: pointer
+	color: #bdbdbd
+	transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms
+	&:hover,
+	&:active,
+	&:focus
+		color: #454545
+.bg-black
+	.close-icon
+		&:hover,
+		&:active,
+		&:focus
+			color: #fff
+.modal-open
+	.btn-modal
+		display: none
+	.single-page-user-setting
+		.btn-modal
+			display: inline-block
+
+//Модальное окно
+#modalUser
+	animation-duration: .3s
+.modal-content
+	background-color: #fff
+	border: none
+	border-radius: 2px
+	box-shadow: 0 14px 12px rgba(0,0,0,0.17), 0 20px 40px 0 rgba(0,0,0,0.30)
+	padding: 0
+	text-align: left
+	.modal-title
+		font-size: 20px
+		color: $h_color
+		font-family: "LatoBold", Arial, sans-serif
+	.modal-header
+		border-bottom: none
+		padding: 25px 30px
+		.close
+			outline: none
+			transition: all .2s ease
+	.modal-body
+		padding: 25px 30px 0
+	.modal-footer
+		border-top: none
+		padding: 0 19px 20px
+		i
+			font-style: normal
+			padding: 0
+		input[type="submit"],
+		input[type="reset"]
+			text-transform: uppercase
+		.close
+			float: none
+			opacity: 1
+			padding: .85em 1.1em
+			font-size: 1em
+			line-height: 1em
+			text-shadow: none
+			vertical-align: middle
+			letter-spacing: 0
+			&:hover
+				background-color: transparent
+	.user-img
+		width: 42px
+		height: 42px
+		overflow: hidden
+		img
+			width: 100%
+			height: 100%
+			object-fit: cover
+	.row-user
+		margin-bottom: 30px
+		.rkmd-checkbox
+			text-align: right
+	.name-user
+		margin: 0
+		padding: 0
+		font-size: 16px
+	.name-programm
+		font-family: "LatoLight", Arial, sans-serif
+		font-size: 14px
+
+//Программы
+.modal-programm
+	.modal-body
+		padding: 10px 30px 0
+	.group input:focus ~ label
+		color: $sub_text_color
+	.group
+		margin-bottom: 30px
+	.group-desc
+		margin-right: 18px
+	.custom-select
+		margin-bottom: 23px
+		.custom-select-trigger
+			border-bottom: 1px solid $sub_text_color
+			padding: 10px 0 5px
+			width: 100%
+			position: relative
+			display: inline-block
+	.group-day
+		label
+			left: 14px
+	.modal-footer
+		padding: 16px 19px 20px
+
+// План питания
+#modalFood
+	.modal-body
+		padding-top: 0
+		font-size: 16px
+		p
+			margin: 0
+		p+p
+			margin-top: 6px
+		ul
+			padding-left: 0
+			margin-top: 8px
+			margin-bottom: 24px
+			list-style: none
+			li
+				position: relative
+				padding-left: 22px
+				&:before
+					content: ''
+					position: absolute
+					width: 7px
+					height: 7px
+					background-color: $main_bg
+					border-radius: 50%
+					top: 9px
+					left: 0
+	.modal-footer
+		padding-top: 40px
+
+// Страница Участника
+#modalMessage
+	.modal-content
+		.modal-body
+			padding: 90px 30px 0
+			margin-bottom: 40px
+		.modal-footer
+			padding: 0 19px 32px
+			input[type="submit"]
+				background-color: $main_bg
+		textarea
+			padding-top: 0
+		textarea ~ label
+			bottom: 0
+			top: 24px
+		.group textarea.used ~ label,
+		.group textarea:focus ~ label,
+			transform: translate3d(0, -20px, 0) scale(0.75)
+			top: 0
+
+#modalUserEdit
+	.group input:focus ~ label
+		color: $main_bg
+	.dropdown-list .dropdown-list-toggle.active,
+	.group input,
+	.group textarea
+		color: $text_color
+		font-family: "LatoRegular", Arial, sans-serif
+	.toggle-block
+		margin-top: 35px
+		span
+			font-size: 16px
+		.switch
+			float: right
+		p
+			margin: 0
+			font-size: 13px
+			color: $sub_text_color
+		.danger
+			font-size: 11px
+			color: $danger
+			line-height: 14px
+			display: inline-block
+			width: 100%
+	.extend
+		font-size: 16px
+		margin-top: 26px
+		display: inline-block
+		vertical-align: middle
+	.checkbox-ripple
+		float: right
+		margin-top: 22px
+
+#modalUserEdit
+	.modal-programm
+		.toggle-block
+			margin-top: 26px
+		textarea
+			padding-top: 0
+		textarea ~ label
+			bottom: 0
+			top: 24px
+		.group textarea.used ~ label,
+		.group textarea:focus ~ label,
+			transform: translate3d(0, -20px, 0) scale(0.75)
+			top: 0
+
+#modalTrainingButton
+	.modal-content
+		overflow: hidden
+	.training-item
+		padding-top: 0
+		.slick-next
+			right: -11px
+		.slick-prev
+			right: 91px
+	.modal-body
+		padding: 10px 49px 30px
+	.modal-header
+		padding: 25px 49px
+	.slide-media
+		padding: 0
+	.pagingInfo
+		bottom: 35px
+	.slide-desc
+		margin-top: 22px
+		input,
+		textarea
+			width: 100%
+			border-top: none
+			border-left: none
+			border-right: none
+			border-bottom: 1px solid #bdbdbd
+			outline: none
+		input
+			font-size: 20px
+			text-transform: uppercase
+			font-family: "LatoLight", Arial, sans-serif
+			margin-bottom: 7px
+		textarea
+			font-size: 16px
+			height: 57px !important
+
+@media (min-width: 320px)
+	#modalUser
+		transform-origin: 100% 100%
+	.modal-programm .group-desc
+		margin-right: 0
+
+@media (min-width: 400px) and (max-width: 539px)
+	.user-img-column,
+	.user-checkbox-column
+		width: 16%
+	.user-name-column
+		width: 67%
+
+@media (min-width: 540px) and (max-width: 619px)
+	.user-img-column,
+	.user-checkbox-column
+		width: 14%
+	.user-name-column
+		width: 72%
+
+@media (min-width: 620px) and (max-width: 767px)
+	.user-img-column,
+	.user-checkbox-column
+		width: 10%
+	.user-name-column
+		width: 80%
+
+@media (max-width: 767px)
+	#modalTrainingButton
+		.modal-header
+			padding: 25px 15px
+		.modal-body
+			padding: 10px 15px
+		.slide-desc
+			margin-bottom: 15px
+			input
+				font-size: 16px
+		.pagingInfo
+			bottom: 15px
+		.slide-media
+			height: 160px
+
+@media (min-width: 768px)
+	.modal-dialog
+		width: 426px
+	.modal-programm
+		width: 546px
+	.modal-content
+		box-shadow: 0 14px 12px rgba(0,0,0,0.17), 0 20px 40px 0 rgba(0,0,0,0.30)
+	#modalFood,
+	#modalTrainingButton
+		.modal-dialog
+			width: 696px
+	#modalTrainingButton
+		.training-item
+			padding-bottom: 45px
+
+@media (min-width: 992px)
+	#modalTrainingButton
+		.modal-dialog
+			width: 826px
+		.slide-desc
+			width: 65%
+
+@media (min-width: 1080px)
+	#modalTrainingButton
+		.modal-dialog
+			width: 876px
+
+@media (min-width: 1101px)
+	#modalUser
+		transform-origin: 70% 50% 40px
