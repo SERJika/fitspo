@@ -1,23 +1,62 @@
 <?php
+?>
 
-Профили участниц
+<h1>My develop-plan</h1>
 
-0 = новая регистрация, доступ только к заполнению анкеты
-1 = новая регистрация, анкета отправлена, ожидание
-2 = статус активный, доступ ко всем разделам
+<h2>General</h2>
+<ol>
+	<li><span>check dependencies</span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+</ol>
+
+<h2>План работ на ЛК-админа</h2>
+<ol>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+</ol>
 
 
-роуты настроить у админа - стр 404
+<h2>План работ на ЛК-участницы</h2>
+<ol>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+</ol>
 
-при регистрации записывать ид в таблицу авторизации
-
-при повторной отправке анкеты профиль менять на 0
-
-
-
-
-
-
+<h2>Check during dev->prod</h2>
+<ol>
+	<li><span>DB parametrs (DB production)</span></li>
+	<li><span>.htaccess (server local->remote)</span></li>
+	<li><span>error display off</span></li>
+	<li><span>MYSQL error off (DB.php)</span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+</ol>
 
 
 

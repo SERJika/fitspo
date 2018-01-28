@@ -17,6 +17,9 @@ class DashboardController
 		$newQuestionnaries = count($dashboard['questionnariesNew']);
 		$page = 'dashboard';
 
+
+		
+
 		require_once(BASE_DOMAIN . '/views/dashboard-admin.php');
 
 		return true;

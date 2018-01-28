@@ -1,2 +1,5 @@
 *.zip
 *.DS_Store
+cheklist.html
+cheklist.php
+/vendor/

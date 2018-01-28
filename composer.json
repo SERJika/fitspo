@@ -1,0 +1,19 @@
+{
+    "name": "serjika/fitspo",
+    "description": "fitspo admin-bar",
+    "type": "project",
+    "require": {
+        "components/jquery": "^1"
+    },
+    "license": "commercial",
+    "authors": [
+        {
+            "name": "SERJika",
+            "email": "ser_jika@malil.ru"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
