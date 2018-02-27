@@ -34,7 +34,7 @@
         </section>
 
         <section>
-          <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
+          <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
           <p style="font-size: 20px;"><span style="display: inline-block; width: 140px;">Аватарка:</span><input style="display: inline-block; margin-left: 20px; font-size: 16px;" type="file" name="avatar" /></p>
           <p>
             <span style="display: inline-block; width: 28%; font-size: 20px;">Имя:</span>
@@ -544,7 +544,6 @@
         <section class="gallery">
           <h3>Фотографии до начала тренировок</h3>
           <p>Прикрепи свои фотографии в полный рост в нижнем белье: спереди, сзади и сбоку</p>
-          <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
           <!-- <p style="font-size: 20px;"><span style="display: inline-block; width: 140px;">Аватарка:</span><input style="display: inline-block; margin-left: 20px; font-size: 16px;" type="file" name="avatar" /></p> -->
           <p style="font-size: 20px;"><span style="display: inline-block; width: 140px;">Вид спереди:</span><input style="display: inline-block; margin-left: 20px; font-size: 16px;" type="file" name="front" /></p>
           <p style="font-size: 20px;"><span style="display: inline-block; width: 140px;">Вид сзади:</span><input style="display: inline-block; margin-left: 20px; font-size: 16px;" type="file" name="back" /></p>

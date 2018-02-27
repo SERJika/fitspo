@@ -28,13 +28,14 @@
   <link rel="stylesheet" href="<?php echo THE_DOMAIN?>template/libs/scrollbar/jquery.mCustomScrollbar.css">
   <link rel="stylesheet" href="<?php echo THE_DOMAIN?>template/libs/calendario/fullcalendar.css">
 
-  <?php if ($page == 'profileCard'): ?>
+<?php if ($page == 'profileCard'): ?>
   <!-- <link rel="stylesheet" href="<?php echo THE_DOMAIN?>template/libs/fine-uploader/fine-uploader-new.min.css"> -->
   <link rel="stylesheet" href="<?php echo THE_DOMAIN?>template/libs/fine-uploader/fine-uploader.css">
   <link rel="stylesheet" href="<?php echo THE_DOMAIN?>template/css/main-user.css">
 <?php else: ?>
   <link rel="stylesheet" href="<?php echo THE_DOMAIN?>template/css/main.css">
 <?php endif ?>
+  <link rel="stylesheet" href="<?php echo THE_DOMAIN?>template/css/sj_style.css">
 
 	<!-- <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/A2BC3B79-CC71-4F45-8BCC-397CDDC3BF80/main.js" charset="UTF-8"></script> -->
   <script src="<?php echo THE_DOMAIN?>template/libs/modernizr/modernizr.js"></script>

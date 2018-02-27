@@ -132,6 +132,12 @@
   });
 
 
+// ========= TEST ===========
+
+  $("#testSubmit").on('click', function() {
+    $('#testForm').submit();
+  });
+
 // ==============================================================
 </script>
 <?php endif; ?>
@@ -192,6 +198,49 @@ if (edata == "110") {
           });
         });
     // ---------------------------------------
+    
+
+    $('#getPDF').on('click', function(e){
+      var id = $(this).attr("data-value");
+      //var params = '';//$('body').text();
+      //console.log('click...');
+
+      //$('.meta-user-info').each(function(){
+        // выведем содержимое текущего элемента в консоль
+        //console.log($(this).html());
+        //params += $(this).text();
+      //});
+
+      //var text = "Привет, мир!";
+
+        //var params = {
+          //text : text,
+        //};
+
+
+
+      //alert(params);
+      //$.post('/getPDF', params, function(data){
+        //alert(data);
+        //window.open('/getPDF/'+params, '_blanck');
+      //});
+      var ww = window.open('/getPDF/' + id, '_blanck');
+     // window.open('/getPDF/'+params, '_blanck');
+    });
+
+
+    // ------------ group_out ----------------
+    $('#group_out').on('click', function(e){
+      var userAnsw = confirm("Вы уверены, что хотите вывести участника из группы?");
+      if (!userAnsw) return;
+      var id = $(this).attr("data-value");
+      var url = '/members/memberGroupOut/' + id;
+      $.post(url, function(data){
+        $('#group_in').text(data);
+        $('#membGr').val(data);
+      });
+    });
+    // ---------------------------------------
 
     // --- ИЗМЕНИТЬ карточку участника -----
 
@@ -202,18 +251,27 @@ if (edata == "110") {
         var nameArr = nameStr.split(" ");
 
         var params = {
-          name: nameArr[0],
-          surname:  nameArr[1],
-          email: $("#membEmail").val(),
-          comment: $("#membComment").val(),
-          program: $("#sources").val(),
+          name    : nameArr[0],
+          surname : nameArr[1],
+          email   : $("#membEmail").val(),
+          comment : $("#membComment").val(),
+          program : $("#sources").val(),
+          group   : $("#membGr").val(),
         };
         var url = '/members/changeMember/' + id;
+        // console.log('log: start');
 
-        $.post(url, params, function(data){
-            // alert(data);
-          });
-        location.href = "/members/member-" + id;
+        var jqxhr = $.post(url, params, function(data){
+
+        });
+  
+  //.done(function() { alert("second success"); })
+  //.fail(function() { alert("error"); });
+  //.always(function() { alert("finished"); });
+  // установим еще один обработчик завершения запроса
+  //jqxhr.always(function(){ alert("second finished"); });
+
+        // location.href = "/members/member-" + id;
       });
     // ---------------------------------------
 

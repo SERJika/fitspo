@@ -74,6 +74,50 @@ class Members
         return $avatar;
     }
 
+    public static function getAvatarByID($id)
+    {
+        $db = Db::getConnection();
+
+        $result = $db->prepare("
+            SELECT `avatar`
+            FROM `members` AS m
+            WHERE m.id = :id
+        ");
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->execute();
+        $member = $result->fetchAll();
+        $avatar = $member['0']['avatar'];
+
+        if ($avatar == '') {
+            $avatar = THE_DOMAIN . 'template/img/members/noavatar.png';
+        } else {
+            $avatar = THE_DOMAIN . 'template/img/members/' . $id . '/' . $avatar;
+        }
+        return $avatar;
+    }
+
+    public static function getBackFaceByID($id)
+    {
+        $db = Db::getConnection();
+
+        $result = $db->prepare("
+            SELECT `avatar`
+            FROM `members` AS m
+            WHERE m.id = :id
+        ");
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->execute();
+        $member = $result->fetchAll();
+        $avatar = $member['0']['avatar'];
+
+        if ($avatar == '') {
+            $avatar = THE_DOMAIN . 'template/img/members/noavatar.png';
+        } else {
+            $avatar = THE_DOMAIN . 'template/img/members/' . $id . '/' . $avatar;
+        }
+        return $avatar;
+    }
+
     public static function getMembersOutOfGroup()
     {
         $db = Db::getConnection();
@@ -145,11 +189,12 @@ class Members
     {
         $db = Db::getConnection();
 
-        $name = $params['name'];
+        $name    = $params['name'];
         $surname = $params['surname'];
-        $email = $params['email'];
+        $email   = $params['email'];
         $comment = $params['comment'];
         $program = $params['program'];
+        $group   = $params['group'];
 
         foreach ($params as $key => $value) {
             $_SESSION['members'][$key] = $value;
@@ -185,7 +230,8 @@ class Members
                 `surname`        = :surname, 
                 `email`          = :email, 
                 `coachComment`   = :comment, 
-                `program`        = :program 
+                `program`        = :program,
+                `inGroup`        = :group
             WHERE `id` = :id
         ");
 
@@ -195,6 +241,7 @@ class Members
         $result->bindParam(':email',   $email,   PDO::PARAM_STR);
         $result->bindParam(':comment', $comment, PDO::PARAM_STR);
         $result->bindParam(':program', $program, PDO::PARAM_INT);
+        $result->bindParam(':group',   $group,   PDO::PARAM_INT);
         $result->execute();
 
         unset($_SESSION['members']);
@@ -202,15 +249,38 @@ class Members
         return true;
     }
 
+    public static function memberGroupOut($id)
+    {
+        $db = Db::getConnection();
+        $result = $db->prepare("
+            UPDATE `members` 
+            SET `inGroup` = 0
+            WHERE `id` = :id
+        ");
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->execute();
+
+        $result = $db->prepare("
+            SELECT `inGroup` 
+            FROM `members` 
+            WHERE `id` = :id
+        ");
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->execute();
+        $group = $result->fetchAll();
+
+        return $group['0']['inGroup'];
+    }
+
     public static function createMember($params)
     {
         // $params = Common::cleanArr($params);
 
-        $appeal = trim($params['name']);
-        $appeal = explode(' ', $appeal, 2);
-        $name = array_shift($appeal);
+        $appeal  = trim($params['name']);
+        $appeal  = explode(' ', $appeal, 2);
+        $name    = array_shift($appeal);
         $surname = implode($appeal);
-        $email = $params['email']; 
+        $email   = $params['email']; 
         $comment = $params['comment']; 
         $program = $params['program'];
         
@@ -258,11 +328,11 @@ class Members
                 '', 
                 '')
         ");
-        $result->bindParam(':name', $name, PDO::PARAM_STR);
-        $result->bindParam(':surname', $surname, PDO::PARAM_STR);
-        $result->bindParam(':email', $email, PDO::PARAM_STR);
-        $result->bindParam(':coachComent', $comment, PDO::PARAM_STR);
-        $result->bindParam(':program', $programID, PDO::PARAM_INT);
+        $result->bindParam(':name',        $name,      PDO::PARAM_STR);
+        $result->bindParam(':surname',     $surname,   PDO::PARAM_STR);
+        $result->bindParam(':email',       $email,     PDO::PARAM_STR);
+        $result->bindParam(':coachComent', $comment,   PDO::PARAM_STR);
+        $result->bindParam(':program',     $programID, PDO::PARAM_INT);
         $result->execute();
 
         $id = $db->lastInsertId();
@@ -296,7 +366,8 @@ class Members
     public static function createNewQuestionnare($db, $id)
     {
         $result = $db->prepare("
-            INSERT INTO `questions` (`id`, `memberID`, `smoke`, `alcohol`, `children`, `T1`, `H1`, `H2`, `H3`, `H4`, `H5`, `H6`, `H7`, `H8`, `H9`, `H10`, `H11`, `H12`, `H13`, `H14`, `H15`, `H16`, `H17`, `H18`, `L1`, `L2`, `L3`, `L4`, `L5`, `L6`, `L7`, `L8`, `L9`, `L10`, `L11`, `S1`, `S2`, `S3`, `A1`, `G1`, `G2`, `G3`, `F1`, `F2`, `W1`, `W2`, `W3`, `P1`, `P2`, `P3`, `P4`, `P5`) VALUES (NULL, :membID, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '')
+            INSERT INTO `questions` (`id`, `memberID`, `smoke`, `alcohol`, `children`, `T1`, `H1`, `H2`, `H3`, `H4`, `H5`, `H6`, `H7`, `H8`, `H9`, `H10`, `H11`, `H12`, `H13`, `H14`, `H15`, `H16`, `H17`, `H18`, `L1`, `L2`, `L3`, `L4`, `L5`, `L6`, `L7`, `L8`, `L9`, `L10`, `L11`, `S1`, `S2`, `S3`, `A1`, `G1`, `G2`, `G3`, `F1`, `F2`, `W1`, `W2`, `W3`, `P1`, `P2`, `P3`, `P4`, `P5`) 
+            VALUES (NULL, :membID, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '')
             ");
         $result->bindParam(':membID', $id, PDO::PARAM_INT);
         $result->execute();

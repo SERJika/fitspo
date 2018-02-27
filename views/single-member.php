@@ -147,7 +147,7 @@
             </li>
             <li>
               <span>Группа</span>
-              <p><?php echo $member['inGroup'] ?></p>
+              <p><span id="group_in"><?php echo $member['inGroup'] ?></span><span id="group_out" data-value="<?php echo $member['id'];?>">[ сбросить ]</span></p>
             </li>
             <li>
               <span>Старт группы</span>
@@ -216,6 +216,11 @@
                         </select>
                       </div>
 
+                      <div class="group">
+                        <input type="text" value="<?php echo $member['inGroup'] ?>" id="membGr"><span class="bar"></span>
+                        <label>Группа</label>
+                      </div>
+
                       <!-- <script>
                         alert('<?php echo $member['title'] ?>');
               $("span.custom-select-trigger").text() = "<?php echo $member['title'] ?>"
@@ -255,7 +260,8 @@
 
           <button class="btn-default waves waves-effect waves-light right-position" id="delMemb" data-value="<?php echo $member['id']; ?>">Удалить</button>
         </div>
-
+<span id="getPDF" data-value="<?php echo $member['id'];?>">PDF</span>
+<!-- <a href="javascript:void(0);" target="_blank" id="getPDF">PDF</a> -->
 
       </div>
     </div>

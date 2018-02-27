@@ -9,3 +9,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php
 
 php_value date.timezone «Europe/Moscow»
+
+
+
+# меняем       что             на что                                                                  директивы
+#RewriteRule img/img.jpg /Applications/XAMPP/xamppfiles/htdocs/vm_projects/fitspo/template/img/modal.jpg [L,NC]
+
+#RewriteRule img/img.jpg /Applications/XAMPP/xamppfiles/htdocs/vm_projects/fitspo_uploads/1/1.png [L,NC]

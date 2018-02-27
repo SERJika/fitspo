@@ -3,7 +3,8 @@
     "description": "fitspo admin-bar",
     "type": "project",
     "require": {
-        "components/jquery": "^1"
+        "components/jquery": "^1",
+        "tecnickcom/tcpdf": "^6.2"
     },
     "license": "commercial",
     "authors": [
@@ -14,6 +15,8 @@
     ],
     "minimum-stability": "beta",
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "roave/security-advisories": "dev-master",
+        "vimeo/psalm": "^0.3.93"
     }
 }

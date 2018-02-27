@@ -52,9 +52,18 @@ class MembersController
          **/
         $params = $_POST;
         
-        Members::changeMemberAjax($id, $params);    
+        Members::changeMemberAjax($id, $params);
 
         return true; 
+    }
+
+    public function actionMemberGroupOut($id)
+    {
+        $group = Members::memberGroupOut($id);
+
+        echo $group;
+
+        return true;
     }
 
     public function actionDelMemberAjax($id)
@@ -78,7 +87,7 @@ class MembersController
 //echo "first \r\n";
         $res = Members::createMember($addMember);   
 // echo "MembContr stop \r\n";
-echo $res;
+
         return $res; 
     }
 

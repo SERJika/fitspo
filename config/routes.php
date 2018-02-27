@@ -10,13 +10,14 @@ return array(
 
     'programs/addProgram'              => 'programs/addProgramAjax',
     'programs/delProgram/([0-9]+)'     => 'programs/delProgramAjax/$1',
-    'programs([a-zA-Z0-9=?])+'         => 'programs/index',
+    'programs([a-zA-Z0-9=?])+'         => 'programs/index',                // проверить положение +
     'programs'                         => 'programs/index',
 
     'questionnaire/profile-([0-9]+)'   => 'members/questionnaire/$1',
 
     'members/addToGroup/([0-9]+)'      => 'members/addToGroupAjax/$1',
     'members/changeMember/([0-9]+)'    => 'members/changeMemberAjax/$1',
+    'members/memberGroupOut/([0-9]+)'  => 'members/memberGroupOut/$1',
     'members/delMember/([0-9]+)'       => 'members/delMemberAjax/$1',
     'members/member-([0-9]+)'          => 'members/view/$1',
     'members/get_profile-([0-9]+)'     => 'members/getProfile/$1',
@@ -27,6 +28,9 @@ return array(
     'members'                          => 'members/index',
 
     'sendQuestionnaire/([0-9]+)'       => 'mail/sendQuestionnaire/$1',
+    'getPDF/([0-9]+)'                  => 'dashboard/getPDF/$1',
+    // 'getPDFtext'                       => 'dashboard/getPDFtext',
+    // 'getTXT'                           => 'dashboard/getTXT',
 
     'rules'                            => 'rules/rules',
     'how-to-eat/([0-9]+)'              => 'rules/recomNutrilon/$1',
@@ -49,6 +53,8 @@ return array(
     'entrance'                         => 'edit/index',
     'quite'                            => 'edit/quite',
     // 'getaccount'                       => 'edit/getaccount',
+'test/([0-9]+)'        => 'uploads/uploadFiles/$1',
+'img/([0-9]+)/([a-zA-Z0-9=?+])' => 'uploads/getImg/$1/$2',
     // 'dashboard'                        => 'dashboard/index',
     '([0-9a-zA-Z]+)'                   => 'dashboard/index',
     ''                                 => 'dashboard/index',

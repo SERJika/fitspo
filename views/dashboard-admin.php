@@ -24,7 +24,7 @@
         
               <div class="table-td" style="padding-left: 30px; text-align: left; vertical-align: top;">
                 <section class="statistics">
-                  <h2 class="bl-title">Группы</h2>
+                  <a class="statistics-link" href="/groups"><h2 class="bl-title"><span>Группы</span></h2></a>
                   <p class="c">Всего групп = <?php echo $groups;?></p>
                 </section>
               </div>
@@ -39,7 +39,7 @@
             <div class="table-row">  
               <div class="table-td" style="padding-left: 30px; text-align: left; vertical-align: top;">
                 <section class="statistics">
-                  <h2 class="bl-title">Участники</h2>
+                  <a class="statistics-link" href="/members"><h2 class="bl-title"><span>Участники</span></h2></a>
                   <p class="c">Всего участников = <?php echo $members;?></p>
                 </section>
               </div>

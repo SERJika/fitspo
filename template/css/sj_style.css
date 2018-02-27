@@ -1,0 +1,24 @@
+.statistics-link h2 span {
+  border-bottom: solid 1px grey;
+}
+
+#group_in {
+	display: inline-block;
+	width: 30px;
+	color: #585858;
+	font-size: 16px;
+    line-height: 1.4;
+}
+#group_out {
+	display: inline-block;
+	font-size: 16px;
+    line-height: 1.4;
+	color: #5fc7ae;
+	cursor: pointer;
+}
+#getPDF {
+	display: inline-block;
+	margin-left: 50px;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
