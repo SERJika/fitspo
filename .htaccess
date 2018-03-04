@@ -11,6 +11,8 @@ RewriteRule ^(.*)$ index.php
 php_value date.timezone «Europe/Moscow»
 
 
+### Запретить всем ботам доступ
+
 
 # меняем       что             на что                                                                  директивы
 #RewriteRule img/img.jpg /Applications/XAMPP/xamppfiles/htdocs/vm_projects/fitspo/template/img/modal.jpg [L,NC]

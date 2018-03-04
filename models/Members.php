@@ -5,8 +5,9 @@ class Members
 	/**
 	 * Returns Singl News Item with $id
 	 * @param integer $id
+     * @return boolean true
 	 */
-
+    
     public static function getMembersList()
     {
         $db = Db::getConnection();
@@ -26,7 +27,14 @@ class Members
         
         return $members;
     }
-
+    
+    
+    /**
+     * Returns Singl News Item with $id
+     * @param integer $id   // ? integer o numeric string
+     * @return array $getMember
+     */
+    
     public static function getMemberById($id)
     {
         $db = Db::getConnection();
@@ -61,15 +69,26 @@ class Members
     //     return $member; 
     // }
 
+ //    public static function getAvatar($member)
+	// {
+ //        if ($member['avatar'] == '') {
+ //            $avatar = '<i class="material-icons user-icon">face</i>';
+ //        } else {
+ //            $avatar = '<img src="' . THE_DOMAIN . 'template/img/members/' 
+ //                      . $member['id'] . '/' . $member['avatar'] 
+ //                      . '" alt="' . $member['name'] 
+ //                      . ' ' . $member['surname'] . '">';
+ //        }
+ //        return $avatar;
+ //    }
+
     public static function getAvatar($member)
-	{
+    {
         if ($member['avatar'] == '') {
             $avatar = '<i class="material-icons user-icon">face</i>';
         } else {
-            $avatar = '<img src="' . THE_DOMAIN . 'template/img/members/' 
-                      . $member['id'] . '/' . $member['avatar'] 
-                      . '" alt="' . $member['name'] 
-                      . ' ' . $member['surname'] . '">';
+            $avatar = '<img src="/img/' . $id . '/avatar-' . $id . '.jpg" alt="' 
+                      . $member['name'] . ' ' . $member['surname'] . '">';
         }
         return $avatar;
     }
@@ -91,32 +110,35 @@ class Members
         if ($avatar == '') {
             $avatar = THE_DOMAIN . 'template/img/members/noavatar.png';
         } else {
-            $avatar = THE_DOMAIN . 'template/img/members/' . $id . '/' . $avatar;
-        }
-        return $avatar;
+            $avatar = '/img/' . $id . '/' . 'avatar-' . $id . '.jpg';
+        } 
+        // else {
+        //     $avatar = THE_DOMAIN . 'template/img/members/' . $id . '/' . $avatar;
+        // }
+        // return $avatar;
     }
 
-    public static function getBackFaceByID($id)
-    {
-        $db = Db::getConnection();
+    // public static function getBackFaceByID($id)
+    // {
+    //     $db = Db::getConnection();
 
-        $result = $db->prepare("
-            SELECT `avatar`
-            FROM `members` AS m
-            WHERE m.id = :id
-        ");
-        $result->bindParam(':id', $id, PDO::PARAM_INT);
-        $result->execute();
-        $member = $result->fetchAll();
-        $avatar = $member['0']['avatar'];
+    //     $result = $db->prepare("
+    //         SELECT `avatar`
+    //         FROM `members` AS m
+    //         WHERE m.id = :id
+    //     ");
+    //     $result->bindParam(':id', $id, PDO::PARAM_INT);
+    //     $result->execute();
+    //     $member = $result->fetchAll();
+    //     $avatar = $member['0']['avatar'];
 
-        if ($avatar == '') {
-            $avatar = THE_DOMAIN . 'template/img/members/noavatar.png';
-        } else {
-            $avatar = THE_DOMAIN . 'template/img/members/' . $id . '/' . $avatar;
-        }
-        return $avatar;
-    }
+    //     if ($avatar == '') {
+    //         $avatar = THE_DOMAIN . 'template/img/members/noavatar.png';
+    //     } else {
+    //         $avatar = THE_DOMAIN . 'template/img/members/' . $id . '/' . $avatar;
+    //     }
+    //     return $avatar;
+    // }
 
     public static function getMembersOutOfGroup()
     {
@@ -134,15 +156,9 @@ class Members
         return $members_out_of_group;
     }
 
+
     public static function getMembersInGroup($numb)
     {
-        // $db = Db::getConnection();
-        // $result = $db->query("
-        //     SELECT * 
-        //     FROM `members` 
-        //     WHERE `inGroup` = '".$numb."'
-        //     ORDER BY `addGrTime` DESC
-        // ");
         $db = Db::getConnection();
         $result = $db->prepare("
             SELECT * 
@@ -157,12 +173,13 @@ class Members
         return $members_in_group;
     }
 
+
     public static function countMembersInGroup($numb)
     {
         $amount = count(self::getMembersInGroup($numb));
-
         return $amount;
     }
+
 
     public static function addMembersToGroupAjax($groupNumb, $members)
     {
@@ -177,8 +194,8 @@ class Members
             ');
             $addDate = date("Y-m-d H:i:s");
             $result->bindParam(':groupNumb', $groupNumb, PDO::PARAM_STR);
-            $result->bindParam(':id', $memberId, PDO::PARAM_STR);
-            $result->bindParam(':addDate', $addDate, PDO::PARAM_STR);
+            $result->bindParam(':id',        $memberId,  PDO::PARAM_STR);
+            $result->bindParam(':addDate',   $addDate,   PDO::PARAM_STR);
             $result->execute();
         }
 
@@ -226,12 +243,12 @@ class Members
 
         $result = $db->prepare("
             UPDATE `members` 
-            SET `name`           = :name, 
-                `surname`        = :surname, 
-                `email`          = :email, 
-                `coachComment`   = :comment, 
-                `program`        = :program,
-                `inGroup`        = :group
+            SET `name`         = :name, 
+                `surname`      = :surname, 
+                `email`        = :email, 
+                `coachComment` = :comment, 
+                `program`      = :program,
+                `inGroup`      = :group
             WHERE `id` = :id
         ");
 
@@ -248,6 +265,7 @@ class Members
 
         return true;
     }
+
 
     public static function memberGroupOut($id)
     {
@@ -271,6 +289,7 @@ class Members
 
         return $group['0']['inGroup'];
     }
+
 
     public static function createMember($params)
     {
@@ -350,6 +369,7 @@ class Members
         return true;
     }
 
+
     public static function delMemberAjax($id)
     {
         $db = Db::getConnection();
@@ -363,10 +383,12 @@ class Members
         return true;
     }
 
+
     public static function createNewQuestionnare($db, $id)
     {
         $result = $db->prepare("
-            INSERT INTO `questions` (`id`, `memberID`, `smoke`, `alcohol`, `children`, `T1`, `H1`, `H2`, `H3`, `H4`, `H5`, `H6`, `H7`, `H8`, `H9`, `H10`, `H11`, `H12`, `H13`, `H14`, `H15`, `H16`, `H17`, `H18`, `L1`, `L2`, `L3`, `L4`, `L5`, `L6`, `L7`, `L8`, `L9`, `L10`, `L11`, `S1`, `S2`, `S3`, `A1`, `G1`, `G2`, `G3`, `F1`, `F2`, `W1`, `W2`, `W3`, `P1`, `P2`, `P3`, `P4`, `P5`) 
+            INSERT INTO `questions` 
+                   (`id`, `memberID`, `smoke`, `alcohol`, `children`, `T1`, `H1`, `H2`, `H3`, `H4`, `H5`, `H6`, `H7`, `H8`, `H9`, `H10`, `H11`, `H12`, `H13`, `H14`, `H15`, `H16`, `H17`, `H18`, `L1`, `L2`, `L3`, `L4`, `L5`, `L6`, `L7`, `L8`, `L9`, `L10`, `L11`, `S1`, `S2`, `S3`, `A1`, `G1`, `G2`, `G3`, `F1`, `F2`, `W1`, `W2`, `W3`, `P1`, `P2`, `P3`, `P4`, `P5`) 
             VALUES (NULL, :membID, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '')
             ");
         $result->bindParam(':membID', $id, PDO::PARAM_INT);
@@ -374,6 +396,7 @@ class Members
 
         return true;
     }
+
 
     public static function createNewPersonCard($db, $id)
     {
@@ -385,6 +408,7 @@ class Members
 
         return true;
     }
+
 
     public static function createLoginData($db, $id, $email, $name, $surname)
     {
@@ -407,6 +431,7 @@ class Members
         return true;
     }
 
+
     public static function getProfileById($id)
     {
         $db = Db::getConnection();
@@ -427,6 +452,7 @@ class Members
         if (!$member) {
             return false;
         }
+
         
         $member = Common::cleanArr2x($member); // trim + htmlentities;
 
@@ -491,6 +517,7 @@ class Members
             return false;
         }
     }
+
 
     public static function addProfile($id, $params)
     {

@@ -137,7 +137,7 @@
         <a href="javascript:void(0)" id="questionnareSubmit" class="btn-default waves waves-effect waves-light">Отправить анкету</a>
       </section> -->
 
-      <img src="/img/<?php echo $id ?>/5.jpg" />
+      <img src="/img/<?php echo $id ?>/3.jpg" />
 
 
     </div>

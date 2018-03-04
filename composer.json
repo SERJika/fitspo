@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "components/jquery": "^1",
-        "tecnickcom/tcpdf": "^6.2"
+        "tecnickcom/tcpdf": "^6.2",
+        "respect/validation": "^1.1"
     },
     "license": "commercial",
     "authors": [

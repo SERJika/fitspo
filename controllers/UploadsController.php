@@ -7,99 +7,119 @@ class UploadsController
 {
     public function actionUploadFiles($id)
     {
+        $log = '';
+        $msg = [];
+        $msg[] = ''; // исключает ошибку неустановленного значения $msg
+
+        $countUploadedFiles = 0;
+
+        // ID verification
+        $chekID = Uploads::handler_ID($id);
+        $id = $chekID['val'];
+        $log .= $chekID['log'];
+        $msg[] = $chekID['msg'];
+        if ($chekID['err']) {
+            echo $log;
+            // write log to file
+            return false; // if (!$chekID['res']) header('Location: ' . THE_DOMAIN . '/');
+        }
+        
         if ($_FILES) {
-            $msg = [];
-            $msg[] = ''; // исключает ошибку неустановленного значения $msg
-            $log =  '------------------------------------'. PHP_EOL;
-            $log .= '------ ДОБАВЛЕНИЕ ИЗОБРАЖЕНИЙ ------' . PHP_EOL;
+            $log .= PHP_EOL;
+            $log .= '------------------------------------'           . PHP_EOL;
+            $log .= '--------- ЗАГРУЗКА ФАЙЛОВ ----------'           . PHP_EOL;
             $log .= '------- ' . STAMP_OF_DATE_AND_TIME . ' -------' . PHP_EOL;
-            $log .= '------------------------------------'. PHP_EOL;
-            $files = Uploads::uploadArrayReformat($_FILES);
-            //print_r($_FILES);
-            //print_r($files);
-
-            // ID verification
-            $chekID = Uploads::checkRequestID($id);
-            if (!$chekID['res']) {
-                $msg[] = $chekID['msg'];
-                $log .= $chekID['log'];
-                return false; // if (!$chekID['res']) header('Location: ' . THE_DOMAIN . '/');
-            }
-            $log .= PHP_EOL . 'Проверка ID... ОК' . PHP_EOL . PHP_EOL;
-            $id = $chekID['res'];
+            $log .= '------------------------------------'           . PHP_EOL;
             
-            // set upload dir
-            $filePath = IMG_UPLOADS . $id . '/';
+            $files = Uploads::formatArr_FILES($_FILES);
             
-            
-            $countUploadedFiles = 0;
-            foreach ($files as $file) {
-                $log .= 'Загрузка файла "' . $file['name'] . '"' . PHP_EOL;
+            foreach ($files as $key => $file) {
+                $log .= 'Загрузка файла "' . $key . '~' . $file['name'] . '"' . PHP_EOL;
                 
-                $checkErrors = Uploads::uploadErrMsg($file['error']);
-                $log  .= $checkErrors['log'];
-                $msg[] = $checkErrors['msg'];
-                if ($checkErrors['res']) continue;
+                $checkUploadErr = Uploads::check_uploadErr($file['error']);
+                $log  .= $checkUploadErr['log'];
+                $msg[] = $checkUploadErr['msg'];
+                if ($checkUploadErr['err']) continue;
 
-                $isUploadedFile = Uploads::isUploadedFile($file['tmp_name']);
+                $isUploadedFile = Uploads::check_isUploadedFile($file['tmp_name']);
                 $log  .= $isUploadedFile['log'];
                 $msg[] = $isUploadedFile['msg'];
-                if ($isUploadedFile['res']) continue;
+                if ($isUploadedFile['err']) continue;
                 
-                $chekFileSize = Uploads::chekErrorFileSize($file['size']);
+                $chekFileSize = Uploads::check_fileSizeErr($file['size']);
                 $log  .= $chekFileSize['log'];
                 $msg[] = $chekFileSize['msg'];
-                if ($chekFileSize['res']) continue;
+                if ($chekFileSize['err']) continue;
                 
-                $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
-                $checkFileExtension = Uploads::chekAllowedFileExtension($fileExtension);
+                $checkFileExtension = Uploads::handler_fileExt($file['name']);
                 $log  .= $checkFileExtension['log'];
                 $msg[] = $checkFileExtension['msg'];
-                if ($checkFileExtension['res']) continue;
+                $fileExtension = $checkFileExtension['val'];
+                if ($checkFileExtension['err']) continue;
                 
-                // Проверка mime-type
-                $mimeType = Uploads::getMimeType($file['tmp_name']);
-                echo '$mimeType = ' . $mimeType . PHP_EOL;
+                $checkMimeType = Uploads::check_MimeType($file['tmp_name']);
+                $log  .= $checkMimeType['log'];
+                $msg[] = $checkMimeType['msg'];
+                if ($checkMimeType['err']) continue;
                 
-                Uploads::isDir($filePath);
+                $checkExifImgType = Uploads::handler_exifImgType($file['tmp_name']);
+                $log  .= $checkExifImgType['log'];
+                $msg[] = $checkExifImgType['msg'];
+                $imgType = $checkExifImgType['val'];
+                if ($checkExifImgType['err']) continue;
+
+                // Check if Ext <> MIME <> EXIF type
                 
-                $fileName = pathinfo($file['name'], PATHINFO_FILENAME);
-                $fileName = Uploads::cutIllegalCharacters($fileName);
-                $fileName = Uploads::translitCyrToLat($fileName);
-                $fileName = $fileName . '__' . $id;
-                $fileName = Uploads::checkFileExistence($fileName, $fileExtension, $filePath);
-                $log .= ' Обработка имени файла.......... ОК' . PHP_EOL;
+                // set upload dir
+                $checkDir = Uploads::handler_uploadDir($id);
+                $log  .= $checkDir['log'];
+                $msg[] = $checkDir['msg'];
+                $filePath = $checkDir['val'];
+                if ($checkDir['err']) continue;
                 
-                $fileTmpLocation = $file['tmp_name']; 
+                $checkFileName = Uploads::handler_fileName($id, $filePath, $file['name'], $fileExtension, $key);
+                $log  .= $checkFileName['log'];
+                $msg[] = $checkFileName['msg'];
+                $fileName = $checkFileName['val'];
+                if ($checkFileName['err']) continue;
                 
-                $log .= ' Начало переноса файла...' . PHP_EOL;
-                $log .= ' ...Source: ' . $fileTmpLocation . PHP_EOL;
-                $log .= ' ...Target: ' . $filePath . $fileName . PHP_EOL;
-                $isUpload = Uploads::moveUploadedFile($fileTmpLocation, $filePath, $fileName);
+                $isUpload = Uploads::handler_moveUploadedFile($file['tmp_name'], $filePath, $fileName);
                 $log  .= $isUpload['log'];
                 $msg[] = $isUpload['msg'];
-                if ($isUpload['res']) continue; 
-                $log .=' Размер файла ' . $file['size'] . ' байт' . PHP_EOL;
+                $fileUploaded = $isUpload['val'];
+                if ($isUpload['err']) continue;
 
-                $log .= 'Файл "' . $file['name'] . '" загружен успешно' . PHP_EOL . PHP_EOL;
+                $resizedImg = Uploads::check_resizeImgToMaxAllowed($id, $fileUploaded, $imgType);
+                $log  .= $resizedImg['log'];
+                $msg[] = $resizedImg['msg'];
+                if ($resizedImg['err']) continue;
+
+                $fileMode = Uploads::disableExecFiles($fileUploaded);
+                // $log .= ' ...fileMode = ' . $fileMode . PHP_EOL;
+
+                $log .= '-----' . PHP_EOL;
+                $log .= 'Файл "' . $file['name'] . '" загружен успешно' . PHP_EOL;
+                $log .= ' ...Исходный размер файла ' . round($file['size'] / 1024) . ' Кбайт' . PHP_EOL;
+                $log .= ' ...Итоговый размер файла ' . round(filesize($fileUploaded) / 1024) . ' Кбайт' . PHP_EOL;
+                $log .= '-----' . PHP_EOL;
                 
                 $countUploadedFiles++;
             }
-            $log .= 'Загружено файлов - ' . $countUploadedFiles . PHP_EOL;
-            $msg = Uploads::userMsg($msg);
-            if (!$msg) $msg[] = 'Успешно загружено файлов - ' . $countUploadedFiles;
-            print_r($msg);
-            $log .= '===================================='. PHP_EOL;
+
+            $log .=  PHP_EOL . 'Загружено файлов = ' . $countUploadedFiles . PHP_EOL;
+            $log .= '====================================' . PHP_EOL;
+            $msg[] = 'Успешно загружено файлов = ' . $countUploadedFiles;
+        } else {
+            $log .= 'Не получено файлов для загрузки' . PHP_EOL;
         }
-                    
-        //if (isset($msg) && isset($log)){
-        	@$msg = Uploads::userMsg($msg);
-        	echo '=====' . PHP_EOL;
-        	echo 'MSG FOR USER = ';
-            print_r($msg);
-            echo '=====' . PHP_EOL;
-            echo PHP_EOL . @$log;
-        //}    
+        
+        echo PHP_EOL;
+        // print_r($msg);
+        $msg = Uploads::cleanMsg($msg);
+        
+        Test::showLog($log);
+        Test::showUserMsg($msg);
+
         
         $member = Members::getProfileById($id);
         
@@ -110,18 +130,14 @@ class UploadsController
     }
     
     
-    // public function actionGetImg($id, $imgName)
-    // {
-    //     $img = Uploads::showImg($id, $imgName);
-    //     return true;
-    // }
     public function actionGetImg($id, $imgName)
     {
-        // $img = Uploads::getImg($id, $imgName);
         $imgPath    = Uploads::getImgPath($id, $imgName);
         $image      = Uploads::getImgSize($imgPath);
-        $resizedImg = Uploads::getResizedImg($imgPath, $image['width'], $image['height']);
-        // $img        = Uploads::getImg($id, $imgPath);
+        $resizedImg = Uploads::resizeImgToNorm($imgPath, $image['width'], $image['height']);
+        Uploads::saveJpg($resizedImg, $id);
+        //$img = Uploads::showImg($id, $resizedImg);
+        $img = Uploads::showImg($resizedImg);
         return true;
     }
 }

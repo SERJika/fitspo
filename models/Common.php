@@ -2,6 +2,38 @@
 
 class Common
 {
+    /**
+     * 
+     * @param iarray $arr
+     * @return array $netArr
+     */
+    
+    public static function cleanArr2x($arr)
+    {
+        $netAarr = [];
+        foreach ($arr as $keyArr => $valArr) {
+            foreach ($valArr as $key => $val) {
+                $netArr[$keyArr][$key] = self::cleanVar( $val );
+            }
+        }
+        return $netArr;
+    }
+    
+    
+    /**
+     * Clearing a string from tags, special characters and spaces at the beginning and end of the line
+     * @param string $var
+     * @return string $var
+     */
+    
+    public static function cleanVar($var)
+    {
+        $var = trim($var);
+        $var = htmlentities($var);
+        return $var;
+    }
+    
+
 	/**
 	 * Returns Singl News Item with $id
 	 * @param integer $id
@@ -50,25 +82,6 @@ class Common
     	} else {
     		return;
     	}
-    }
-
-    public static function cleanVar($var)
-    {
-        $var = trim($var);
-        $var = htmlentities($var);
-
-        return $var;
-    }
-
-    public static function cleanArr2x($arr)
-    {
-        $netAarr = [];
-        foreach ($arr as $keyArr => $valArr) {
-            foreach ($valArr as $key => $val) {
-                $netArr[$keyArr][$key] = self::cleanVar( $val );
-            }
-        }
-        return $netArr;
     }
 
     public static function isVal($val)

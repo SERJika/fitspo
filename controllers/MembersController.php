@@ -7,32 +7,43 @@
 */
 class MembersController
 {
+    /**
+     * Shows the list of all members in template /views/members.php
+     * @param none
+     * @return boolean true
+     */
+    
     public function actionIndex()
     {
-        /**
-         * Get members list
-         */
         $members = Members::getMembersList();
         $page = "membersList";
-
         require_once(BASE_DOMAIN . '/views/members.php');
-        
         return true;
     }
-
+    
+    
+    /**
+     * Shows a personal card of the member in template /views/single-member.php
+     * @param none
+     * @return boolean true
+     */
+    
     public function actionView($id)
     {
-        /**
-         * Get member's card
-         **/
         $member = Members::getMemberById($id);
         $nameStr = $member['name'] . ' ' . $member['surname'];
         $page = "memberCard";
         require_once(BASE_DOMAIN . '/views/single-member.php');
-
         return true;
     }
-
+    
+    
+    /**
+     * Shows a personal card of the member in template /views/single-member.php
+     * @param none
+     * @return boolean true
+     */
+    
     public function actionAddToGroupAjax($groupNumb)
     {
         /**
